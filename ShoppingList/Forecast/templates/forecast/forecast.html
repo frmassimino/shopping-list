@@ -1,0 +1,19 @@
+{% extends "forecast/index.html" %}
+
+{% block content %}
+<h2>Forecast List</h2>
+<div>
+    <table>
+        <th>Priduct</th>
+        <th>Average days</th>
+        <th>Days until next buy...</th>
+        {% for element in forecast_list %}
+        <tr>
+            <td>{{element.name}}</td>
+            <td>{{element.avg_days}}</td>
+            <td>{{element.days_til_next_buy}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock%}

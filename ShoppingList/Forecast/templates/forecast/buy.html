@@ -1,0 +1,66 @@
+{% extends "forecast/index.html" %}
+
+{% block content %}
+<h2>Log product you just bougth...</h2>
+
+<form action="../buy/" method="post">
+    {% csrf_token %}
+    <!-- <p>
+        Category
+        <select name="category" id="category">
+            <option value="select">--select--</option>
+            {% for category in category_list %}
+            <option value="{{category}}">{{category}}</option>
+            {% endfor %}
+        </select>
+    </p> -->
+
+    <p>
+        Product 
+        <select name="product" id="product">
+            <option value="select">--select--</option>
+            {% for product in product_list %}
+            <option value="{{product.description}}">{{product.description}}</option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <p>Price <input name="price" type="number" step="0.01" min="0"></p>
+
+    <p>Quantity <input name="quantity" type="number" min="0"></p>
+
+    <p>Date <input name="date" type="date"></p>
+
+    <!--
+    <label for="measure">Measure</label>
+    <select name="measure" id="measure">
+        <option value="select">--select--</option>
+        {% for measure in measure_list %}
+        <option value="{{measure.description}}">{{measure}}</option>
+        {% endfor %}
+    </select>
+    -->
+
+    <p><input type="submit" value="Submit"></p>
+</form>
+<br>
+<h2>Buy History</h2>
+<div>
+    <table>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        {% for element in buy_list %}
+        <tr>
+            <td>{{element.id}}</td>
+            <td>{{element.buy_datetime}}</td>
+            <td>{{element.product.description}}</td>
+            <td>{{element.price}}</td>
+            <td>{{element.qty}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
